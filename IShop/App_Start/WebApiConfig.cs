@@ -25,7 +25,7 @@ namespace IShop
                                             new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream"));
 
             // Web API configuration and services
-            // Configure Web API to use only bearer token authentication.
+            // Настроить веб-API, чтобы использовать только носителем маркера проверки подлинности.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

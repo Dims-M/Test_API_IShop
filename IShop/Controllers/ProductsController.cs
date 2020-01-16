@@ -11,6 +11,8 @@ namespace IShop.Controllers
 {
     /// <summary>
     /// Контролер с логикой описывающий Products
+    /// Он также выполняет действия над входными данными запросов в контроллеру
+    /// И возращае какой либо результат обратно.
     /// </summary>
     public class ProductsController : ApiController
     { /// <summary>
