@@ -1,0 +1,1 @@
+[{"Id":1,"CategoryId":1,"Name":"iPhone","Price":20000.0},{"Id":2,"CategoryId":1,"Name":"Samsung Galaxy","Price":18500.0},{"Id":3,"CategoryId":2,"Name":"iPad Mini","Price":17000.0}]
