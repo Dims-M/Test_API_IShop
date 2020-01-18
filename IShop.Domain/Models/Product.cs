@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IShop.Domain.Models
 {
+    /// <summary>
+    /// Класс описывающий сам товар
+    /// </summary>
     public class Product : IIdentifiable
     {
         public int Id { get; set; }

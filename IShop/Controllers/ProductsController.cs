@@ -42,21 +42,26 @@ namespace IShop.Controllers
         }
 
 
+        /// <summary>
+        /// Добавление товара
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage Add([FromBody] Product product)
+        public HttpResponseMessage Add([FromBody] Product product) //// атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
-            if (!ModelState.IsReadOnly)
+            if (!ModelState.IsReadOnly) //проверка на состояние. Если данные не коректны 
             {
                 var errorMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
-                errorMessage.Content = new StringContent("Name can't be empty");
+                errorMessage.Content = new StringContent("Имя не может быть пустым");
 
-                return errorMessage;
+                return errorMessage; //отправляем сообщение о ошибке
             }
 
-            _productService.Add(product);
+            _productService.Add(product); //добовляем ноовый продукт
 
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.OK); // отправляем успеный статук ОК
         }
 
         [HttpPut]

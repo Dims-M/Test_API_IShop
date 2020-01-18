@@ -49,26 +49,43 @@ namespace IShop.Controllers
             return Ok(category);
         }
 
-        [HttpPost]
-        public IHttpActionResult Add([FromBody] Category category)
+        /// <summary>
+        /// Метод(Action) создания новой категории
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        [HttpPost] //атрибут пост. Указывает что будет обращение от клиента к серверу
+        public IHttpActionResult Add([FromBody] Category category)// атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
+            //проверка на нулл и неиницализированный обьект
             if (string.IsNullOrEmpty(category.Name))
-                return Ok("Can't be empty");
+                return Ok("Не может быть пустым");
 
-            _categoryService.Add(category);
+            _categoryService.Add(category); //созднание новой директории
 
-            return Ok();
+            return Ok(); //возращаем удачный результат ОК.
         }
 
-        [HttpPut]
-        public IHttpActionResult Update([FromBody] Category category)
+        /// <summary>
+        /// Метод Обновление текущей котегории товаров
+        /// Можем только переименовывать категории
+        /// </summary>
+        /// <param name="category">Указываем какую категорию нужно обновить </param>
+        /// <returns></returns>
+        [HttpPut] //атрибут HttpPut 
+        public IHttpActionResult Update([FromBody] Category category) // атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
             _categoryService.Update(category);
 
             return Ok();
         }
 
-        [HttpDelete]
+        /// <summary>
+        /// Метод удаления категории. По ID
+        /// </summary>
+        /// <param name="id">ID нужной категории</param>
+        /// <returns></returns>
+        [HttpDelete] //атрибут. Сам id приходит по ури в запросе к серверу
         public IHttpActionResult Delete(int id)
         {
             _categoryService.Delete(id);

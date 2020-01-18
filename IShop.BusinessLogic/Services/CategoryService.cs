@@ -30,6 +30,9 @@ namespace IShop.BusinessLogic.Services
     {
         private const string FilePath = @"\bin\Data\Categories.txt";
 
+        /// <summary>
+        /// Лист для хранения категорий
+        /// </summary>
         private List<Category> _categories;
 
         public CategoryService()
@@ -42,34 +45,49 @@ namespace IShop.BusinessLogic.Services
                 : new List<Category>();
         }
 
+        /// <summary>
+        /// Создание и добавление новой категории
+        /// </summary>
+        /// <param name="category"></param>
         public void Add(Category category)
         {
+            //получаем максимальный Id на текущий момент
             int id = GetMaxId(_categories
                                     .OfType<IIdentifiable>()
                                     .ToList());
 
-            category.Id = id + 1;
+            category.Id = id + 1; //увеличиваем на 1
 
-            _categories.Add(category);
+            _categories.Add(category); //и присваеваем новой записи
 
             SaveChanges();
         }
 
+        /// <summary>
+        /// удаляем котегорию по ID
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
-            var category = Get(id);
+            var category = Get(id); //получаем 
 
-            if (category != null)
+            if (category != null) 
             {
                 _categories.Remove(category);
             }
 
-            SaveChanges();
+            SaveChanges(); //сохранение новой категории
         }
 
+       
+        /// <summary>
+        ///  ищем  нужный id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Category Get(int id)
         {
-            return _categories
+            return _categories 
                         .FirstOrDefault(x => x.Id == id);
         }
 
@@ -78,13 +96,18 @@ namespace IShop.BusinessLogic.Services
             return _categories;
         }
 
+        /// <summary>
+        /// Метод обновления категории.
+        /// 
+        /// </summary>
+        /// <param name="category">Нужная катнгория</param>
         public void Update(Category category)
         {
-            var oldCategory = Get(category.Id);
+            var oldCategory = Get(category.Id); //получаем id старой котегории
 
-            oldCategory.Name = category.Name;
+            oldCategory.Name = category.Name; //переименновываем старую на новую
 
-            SaveChanges();
+            SaveChanges(); //сохранняем результат
         }
 
         private List<Category> ReadData()
@@ -94,6 +117,9 @@ namespace IShop.BusinessLogic.Services
             return JsonConvert.DeserializeObject<List<Category>>(data);
         }
 
+        /// <summary>
+        /// Метод сохранениия результата в Json формате 
+        /// </summary>
         private void SaveChanges()
         {
             var data = JsonConvert.SerializeObject(_categories);
