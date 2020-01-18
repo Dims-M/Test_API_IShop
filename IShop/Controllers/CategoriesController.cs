@@ -41,10 +41,10 @@ namespace IShop.Controllers
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var category = _categoryService.Get(id); //получаем категорию 
-
+            var category = _categoryService.Get(id); //получаем категорию по Шв
+            
             if (category == null)
-                return NotFound();
+                return NotFound(); // Вернем сообщение что данная категория не обнаружена
 
             return Ok(category);
         }
@@ -59,7 +59,7 @@ namespace IShop.Controllers
         {
             //проверка на нулл и неиницализированный обьект
             if (string.IsNullOrEmpty(category.Name))
-                return Ok("Не может быть пустым");
+                return Ok("Имя категории Не может быть пустым");
 
             _categoryService.Add(category); //созднание новой директории
 

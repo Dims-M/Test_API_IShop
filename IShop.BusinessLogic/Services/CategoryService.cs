@@ -81,7 +81,7 @@ namespace IShop.BusinessLogic.Services
 
        
         /// <summary>
-        ///  ищем  нужный id 
+        ///  ищем категорию по  id 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

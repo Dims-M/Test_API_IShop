@@ -48,7 +48,7 @@ namespace IShop.Controllers
         /// <param name="product"></param>
         /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage Add([FromBody] Product product) //// атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
+        public HttpResponseMessage Add([FromBody] Product product) ////Получаем экземпляр класса Product атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
             if (!ModelState.IsReadOnly) //проверка на состояние. Если данные не коректны 
             {
@@ -63,7 +63,13 @@ namespace IShop.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK); // отправляем успеный статук ОК
         }
-
+      
+        
+        /// <summary>
+        /// Обновление товара.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpPut]
         public IHttpActionResult Update([FromBody] Product product)
         {
@@ -71,7 +77,13 @@ namespace IShop.Controllers
 
             return Ok();
         }
-
+     
+        
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
