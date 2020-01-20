@@ -54,7 +54,7 @@ namespace IShop.Controllers
             {
                 var errorMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
 
-                errorMessage.Content = new StringContent("Имя не может быть пустым");
+                errorMessage.Content = new StringContent("Имя продукта  не может быть пустым");
 
                 return errorMessage; //отправляем сообщение о ошибке
             }

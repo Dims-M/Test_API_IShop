@@ -12,7 +12,7 @@ namespace IShop.Domain.Models
 
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required] //данный атрибут указывает что Это свойство обязательно должно указыватсяс именем.Не может быть пустым
         public string Name { get; set; }
 
         public double Price { get; set; }
