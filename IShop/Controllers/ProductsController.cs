@@ -73,7 +73,7 @@ namespace IShop.Controllers
         [HttpPut]
         public IHttpActionResult Update([FromBody] Product product)
         {
-            _productService.Update(product);
+            _productService.Update(product); //обновление товара
 
             return Ok();
         }

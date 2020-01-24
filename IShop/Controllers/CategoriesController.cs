@@ -41,7 +41,7 @@ namespace IShop.Controllers
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var category = _categoryService.Get(id); //получаем категорию по Шв
+            var category = _categoryService.Get(id); //получаем категорию по шid
             
             if (category == null)
                 return NotFound(); // Вернем сообщение что данная категория не обнаружена
@@ -55,7 +55,7 @@ namespace IShop.Controllers
         /// <param name="category"></param>
         /// <returns></returns>
         [HttpPost] //атрибут пост. Указывает что будет обращение от клиента к серверу
-        public IHttpActionResult Add([FromBody] Category category)// атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
+        public IHttpActionResult Add([FromBody] Category category)// oтрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
             //проверка на нулл и неиницализированный обьект
             if (string.IsNullOrEmpty(category.Name))
@@ -67,17 +67,17 @@ namespace IShop.Controllers
         }
 
         /// <summary>
-        /// Метод Обновление текущей котегории товаров
+        /// Метод Обновление текущей категории товаров
         /// Можем только переименовывать категории
         /// </summary>
         /// <param name="category">Указываем какую категорию нужно обновить </param>
         /// <returns></returns>
-        [HttpPut] //атрибут HttpPut 
+        [HttpPut] //атрибут HttpPut отрибут обновления
         public IHttpActionResult Update([FromBody] Category category) // атрибут боди [FromBody] и это означает чо атрибут приходит из тела заппоса.. А не изаголовка 
         {
             _categoryService.Update(category);
 
-            return Ok();
+            return Ok();//возращаем удачный результат ОК.
         }
 
         /// <summary>
@@ -88,10 +88,12 @@ namespace IShop.Controllers
         [HttpDelete] //атрибут. Сам id приходит по ури в запросе к серверу
         public IHttpActionResult Delete(int id)
         {
+            
             _categoryService.Delete(id);
 
-            return Ok();
+            return Ok(); //возращаем удачный результат ОК.
         }
+
 
         [HttpGet]
         [Route("search")]

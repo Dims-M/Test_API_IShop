@@ -28,6 +28,7 @@ namespace IShop.BusinessLogic.Services
 
     public class CategoryService : ServiceBase, ICategoryService
     {
+        //место хранения данных котегории. Можно подключить БД
         private const string FilePath = @"\bin\Data\Categories.txt";
 
         /// <summary>
