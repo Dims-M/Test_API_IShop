@@ -30,6 +30,7 @@ namespace TestApi
           
             {
              // WebRequest req = WebRequest.Create(@"http://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=a5ca6c5692978d29d84474e9f351648c");
+          
             WebRequest req = WebRequest.Create(pathGetJson);
             req.Method = "POST";
             //Вот тут пришлось погуглить так как не редко тип у каждого свой, в итоге нашел в одном из проектов на github.
@@ -38,6 +39,7 @@ namespace TestApi
             //  openweather openweather;//!!!Новая сторока
           
             WebResponse response = req.GetResponse();
+
             using (Stream s = response.GetResponseStream()) //Пишем в поток.
             {
                 using (StreamReader r = new StreamReader(s)) //Читаем из потока.
@@ -126,6 +128,17 @@ namespace TestApi
 
     }
 
+    public void TestGetApi()
+    {
+        using (var wc = new WebClient())
+        {
+            wc.Headers.Add(
+                    "X-Mashape-Authorization", "1R1tvmPFLFL7brrvfO9jvsqnvhiVggAn");
+            var body = wc.DownloadString("http:localhost:1681/api/text/");
+            var js = Newtonsoft.Json.Linq.JObject.Parse(body);
+            /* do something with the json */
+        }
+    }
 
 
 }
