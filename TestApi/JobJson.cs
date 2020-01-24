@@ -125,10 +125,8 @@ namespace TestApi
 
     }
 
-
-    }
-
-    public void TestGetApi()
+        //https://docs.microsoft.com/ru-ru/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+        public void TestGetApi()
     {
         using (var wc = new WebClient())
         {
@@ -139,6 +137,8 @@ namespace TestApi
             /* do something with the json */
         }
     }
+    }
+
 
 
 }
