@@ -52,7 +52,7 @@ namespace IShop.Controllers
         {
             if (!ModelState.IsReadOnly) //проверка на состояние. Если данные не коректны 
             {
-                var errorMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                var errorMessage = new HttpResponseMessage(HttpStatusCode.BadRequest); //ответ  клиенту. плохой, невыполнимый запрос
 
                 errorMessage.Content = new StringContent("Имя продукта  не может быть пустым");
 

@@ -29,7 +29,7 @@ namespace IShop
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            // Web API routes
+            // Web API routes Маршрутизация шаблон
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
