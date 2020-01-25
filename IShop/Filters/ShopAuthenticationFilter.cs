@@ -12,8 +12,13 @@ using System.Web.Http.Results;
 
 namespace IShop.Filters
 {
-    public class ShopAuthenticationFilter : Attribute, IAuthenticationFilter
+    /// <summary>
+    ///Класс  реализация фильтров аутифкация 
+    ///Проверяет подлинность запроса
+    /// </summary>
+    public class ShopAuthenticationFilter : Attribute, IAuthenticationFilter 
     {
+
         public bool AllowMultiple
         {
             get
@@ -21,9 +26,17 @@ namespace IShop.Filters
                 return false;
             }
         }
+
+        /// <summary>
+        /// фильтр вызывается до работы метода(актион)
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task AuthenticateAsync(HttpAuthenticationContext context,
                             CancellationToken cancellationToken)
         {
+            //проверка данных которые пришли в хедерах запроса от клиента
             context.Principal = null;
             AuthenticationHeaderValue authentication = context.Request.Headers.Authorization;
 
@@ -35,6 +48,7 @@ namespace IShop.Filters
                 string login = authData[0];
                 context.Principal = new GenericPrincipal(new GenericIdentity(login), roles);
             }
+            //если нет нужных(правельных) данных
             if (context.Principal == null)
             {
                 context.ErrorResult
@@ -43,6 +57,13 @@ namespace IShop.Filters
             }
             return Task.FromResult<object>(null);
         }
+
+        /// <summary>
+        /// фильтр вызывается после работы метода(астион)
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context,
                                     CancellationToken cancellationToken)
         {

@@ -94,7 +94,7 @@ namespace IShop.Controllers
             return Ok(); //возращаем удачный результат ОК.
         }
 
-
+        //поиск категории в строке браузера
         [HttpGet]
         [Route("search")]
         public IHttpActionResult Search(string name)

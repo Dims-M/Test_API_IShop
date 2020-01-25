@@ -11,6 +11,9 @@ using System.Web.Http.Filters;
 
 namespace IShop.Filters
 {
+    /// <summary>
+    /// Фильтр авторизации в апи
+    /// </summary>
     public class ShopAuthorizationFilter : Attribute, IAuthorizationFilter
     {
         public bool AllowMultiple
@@ -21,6 +24,13 @@ namespace IShop.Filters
             }
         }
 
+        /// <summary>
+        /// поверка аторизационных правил для нужного экшена
+        /// </summary>
+        /// <param name="actionContext"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="continuation"></param>
+        /// <returns></returns>
         public Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
             return Task.FromResult<HttpResponseMessage>(
